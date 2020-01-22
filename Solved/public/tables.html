@@ -58,7 +58,7 @@
         <div class="row">
             <div class="col py-2">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id = "wait-section">
                       Waiting List
                     </div>
                     <!-- <div class="card-body">
@@ -117,6 +117,29 @@ $.get(currentURL + "/api/tables")
 })
 }
 runTableQuery();
+
+function runWaitQuery() {
+    var currentURL = window.location.origin;
+
+$.get(currentURL + "/api/reservations")
+.done(function(waitingListData) {
+    console.log(waitingListData)
+
+    for (var i =0; i < waitingListData.length; i ++) {
+        console.log(waitingListData[i]);
+
+        var waitSection = $("<div>");
+            waitSection.addClass('card-body');
+            waitSection.attr('id', 'waitWell-' + i+1);
+            $("#wait-section").append(waitSection);
+
+           var tableNumber = i + 1;
+
+           $('#waitWell-' + i + 1).append(tableNumber + ' ' + waitingListData[i].id);
+    }
+})
+}
+runWaitQuery();
 
 </script>
 
