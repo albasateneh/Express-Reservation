@@ -74,7 +74,7 @@
         </div>
        
         
-<a href="" class="href">Clear Table</a>
+<a href="" class="href" id= "clear">Clear Table</a>
 |
         <a href="url">API Table Link </a>
         |
@@ -115,7 +115,7 @@ $.get(currentURL + "/api/tables")
     }
 })
 }
-runTableQuery();
+
 
 function runWaitQuery() {
     var currentURL = window.location.origin;
@@ -138,6 +138,18 @@ $.get(currentURL + "/api/reservations")
     }
 })
 }
+
+function clearTables() {
+    var currentURL = window.location.origin;
+    $.post(currentURL + "/api/clear")
+}
+
+$("#clear").on("click", function() {
+    alert("Clearing...");
+    clearTables();
+    location.reload();
+});
+runTableQuery();
 runWaitQuery();
 
 </script>
